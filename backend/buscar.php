@@ -9,6 +9,7 @@ if (isset($_POST['fecha_desde']) && isset($_POST['fecha_hasta'])) {
     $hasta = $_POST['fecha_hasta'];
 
     // Asegurarse de que estén en el formato correcto
+    // Comentario development
     if (!empty($desde) && !empty($hasta)) {
         //Traer todas las ediciones cuya fecha esté entre esas dos fechas.
         $sql = "SELECT * FROM edicion WHERE fecha BETWEEN '$desde' AND '$hasta' ORDER BY fecha ASC";
