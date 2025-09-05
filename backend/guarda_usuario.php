@@ -2,21 +2,21 @@
 require 'conexion.php';
 
 $guarda = isset($_POST['guarda']) ? $_POST['guarda'] : 0;
-$empresa_id = isset($_POST['empresa_id']) ? $_POST['empresa_id'] : 0;
+$usuario_id = isset($_POST['usuario_id']) ? $_POST['usuario_id'] : 0;
 
 
 if ($guarda == 1) {
-    $empresa_id = $mysqli->real_escape_string($_POST['empresa_id']);
+    $usuario_id = $mysqli->real_escape_string($_POST['usuario_id']);
     $nombre = $mysqli->real_escape_string($_POST['nombre']);
     $email = $mysqli->real_escape_string($_POST['email']);
     $contraseña = $mysqli->real_escape_string($_POST['contraseña']);
 
-    $sql = "INSERT INTO empresa (nombre, email, contraseña, empresa_id)
-    VALUES ('$nombre', '$email', '$contraseña', '$empresa_id')";
+    $sql = "INSERT INTO usuarios (nombre, email, contraseña, usuario_id, publicado)
+    VALUES ('$nombre', '$email', '$contraseña', '$usuario_id', '1')";
 
     $fila = $resultado->fetch_assoc();
     $resultado = $mysqli->query($sql);
-    $sql = "UPDATE empresa SET nombre='$nombre', email='$email', contraseña='$contraseña' WHERE empresa_id=$id";
+    $sql = "UPDATE usuario SET nombre='$nombre', email='$email', contraseña='$contraseña' WHERE usuario_id=$id";
 
 
     // echo $sql;
@@ -73,5 +73,4 @@ if ($guarda == 1) {
         </div>
     </div>
 </body>
-
 </html>
