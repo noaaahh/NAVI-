@@ -10,7 +10,7 @@ $guarda = isset($_POST['guarda']) ? (int)$_POST['guarda'] : 0;
 
 if ($guarda === 1) {
     // Verificar si existe el ID en la base de datos
-    $sql = "SELECT * FROM NAVI WHERE empresa_id = $id";
+    $sql = "SELECT * FROM savi WHERE empresa_id = $id";
     $resultado = $mysqli->query($sql);
 
     if ($resultado && $resultado->num_rows > 0) {
@@ -24,7 +24,7 @@ if ($guarda === 1) {
         $contraseña = isset($_POST['contraseña']) ? $mysqli->real_escape_string($_POST['contraseña']) : '';
 
         // Ejecutar el UPDATE
-        $sql = "UPDATE NAVI SET empresa_id='$empresa_id', nombre='$nombre', email='$email', contraseña='$contraseña' WHERE empresa_id=$id";
+        $sql = "UPDATE savi SET empresa_id='$empresa_id', nombre='$nombre', email='$email', contraseña='$contraseña' WHERE empresa_id=$id";
         $resultado = $mysqli->query($sql);
 
         // Redirigir después de guardar
@@ -33,7 +33,7 @@ if ($guarda === 1) {
     }
 } else {
     // Al cargar la página, obtener los datos actuales de la edición
-    $sql = "SELECT * FROM NAVI WHERE empresa_id = $id";
+    $sql = "SELECT * FROM savi WHERE empresa_id = $id";
     $resultado = $mysqli->query($sql);
     if ($resultado && $resultado->num_rows > 0) {
         $fila = $resultado->fetch_assoc();

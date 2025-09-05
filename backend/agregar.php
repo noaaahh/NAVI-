@@ -10,7 +10,7 @@ $_GET["empresa_id"] = isset($_GET["empresa_id"]) ? $_GET["empresa_id"] : "";
 // si esta seteada(isset) la variable id en POST, entonces la guardo en $id, si no, la tomo de GET
 $empresa_id = isset($_POST["empresa_id"]) ? $_POST["empresa_id"] : $_GET["empresa_id"];
 
-$sql = "SELECT * FROM NAVI WHERE publicado = 1 ORDER BY nombre";
+$sql = "SELECT * FROM savi WHERE publicado = 1 ORDER BY nombre";
 
 if ($accion == "agregar") {
     // Escapear todos los datos de post para evitar hackeo de la base de datos
@@ -19,7 +19,7 @@ if ($accion == "agregar") {
     $email = $mysqli->real_escape_string($_POST['email']);
     $contraseña = $mysqli->real_escape_string($_POST['contraseña']);
 
-    $sql = "INSERT INTO NAVI (empresa_id, nombre, email, contraseña)
+    $sql = "INSERT INTO savi (empresa_id, nombre, email, contraseña)
         VALUES ('$empresa_id', '$nombre', '$email', '$contraseña')";
 
 
@@ -35,7 +35,7 @@ if ($accion == "agregar") {
 
 
 if (strlen($empresa_id) && is_numeric($empresa_id)) {
-    $sql = "SELECT nombre, email, contraseña, empresa_id FROM NAVI where empresa_id='{$empresa_id}'";
+    $sql = "SELECT nombre, email, contraseña, empresa_id FROM savi where empresa_id='{$empresa_id}'";
     $resultado = $mysqli->query($sql);
     // Obtengo la primer tupla con sus valores por nombre de columna
     $fila = $resultado->fetch_assoc();
