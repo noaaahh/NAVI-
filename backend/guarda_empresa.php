@@ -11,12 +11,12 @@ if ($guarda == 1) {
     $email = $mysqli->real_escape_string($_POST['email']);
     $contraseña = $mysqli->real_escape_string($_POST['contraseña']);
 
-    $sql = "INSERT INTO NAVI (nombre, email, contraseña, empresa_id)
+    $sql = "INSERT INTO empresa (nombre, email, contraseña, empresa_id)
     VALUES ('$nombre', '$email', '$contraseña', '$empresa_id')";
 
     $fila = $resultado->fetch_assoc();
     $resultado = $mysqli->query($sql);
-    $sql = "UPDATE NAVI SET nombre='$nombre', email='$email', contraseña='$contraseña' WHERE empresa_id=$id";
+    $sql = "UPDATE empresa SET nombre='$nombre', email='$email', contraseña='$contraseña' WHERE empresa_id=$id";
 
 
     // echo $sql;

@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import "./Inicio.css";
+import { FaInstagram } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa";
+import { FaWhatsapp } from "react-icons/fa";
+import { MdMailOutline } from "react-icons/md";
 
 const Inicio = () => {
   const [open, setOpen] = useState(null);
@@ -10,17 +14,17 @@ const Inicio = () => {
 
   return (
     <div className="inicio">
-      <header className="navbar">
-        <div className="logo">SAVI</div>
-        <nav className="nav-links">
-          <button>Iniciar sesión</button>
-          <button>Ir a la web</button>
-          <button>Registrarse</button>
-        </nav>
-      </header>
 
       <section className="hero">
-        <h1>SAVI</h1>
+        <div className="nav-links">
+          <button>Iniciar sesión</button>
+          <button className="btn-destacado">Ir a la web</button>
+          <button>Registrarse</button>
+        </div>
+        <div className="logo-title">
+          <img src="https://i.imgur.com/5MlZOKV.png" alt="Logo SAVI" className="logo" />
+          <h1 className="logo-title__title">S A V I</h1>
+        </div>
         <p>
           Conectamos a las personas con locales gastronómicos accesibles,
           calificaciones reales y un sello de certificación que impulsa la
@@ -32,22 +36,28 @@ const Inicio = () => {
         <h2>Algunas de nuestras opciones:</h2>
         <div className="cards">
           <div className="card">
-            <img src="https://via.placeholder.com/250" alt="Opción 1" />
-            <p>Domino´s pizza</p>
-            <p>Poctitos</p>
-            <p>Rampa</p>
+            <img src="https://i.imgur.com/ZifMmLa.jpeg" alt="Opción 1" />
+            <div className="card-overlay">
+              <p>Domino´s pizza</p>
+              <p>Poctitos</p>
+              <p>Rampa</p>
+            </div>
           </div>
           <div className="card">
-            <img src="https://via.placeholder.com/250" alt="Opción 2" />
-            <p>Domino´s pizza</p>
-            <p>Poctitos</p>
-            <p>Rampa</p>
+            <img src="https://i.imgur.com/ZifMmLa.jpeg" alt="Opción 2" />
+            <div className="card-overlay">
+              <p>Domino´s pizza</p>
+              <p>Poctitos</p>
+              <p>Rampa</p>
+            </div>
           </div>
           <div className="card">
-            <img src="https://via.placeholder.com/250" alt="Opción 3" />
-            <p>Domino´s pizza</p>
-            <p>Poctitos</p>
-            <p>Rampa</p>
+            <img src="https://i.imgur.com/ZifMmLa.jpeg" alt="Opción 3" />
+            <div className="card-overlay">
+              <p>Domino´s pizza</p>
+              <p>Poctitos</p>
+              <p>Rampa</p>
+            </div>
           </div>
         </div>
       </section>
@@ -59,19 +69,20 @@ const Inicio = () => {
           <div className="faq">
             <div onClick={() => toggle(1)} className="faq-item">
               <h3>¿Quiénes somos?</h3>
-              {open === 1 && <p>Somos un equipo que busca ...</p>}
+              {open === 1 && <p>S.A.V.I. es un proyecto creado en Montevideo para mejorar cómo las grandes
+                 empresas y cadenas gestionan la accesibilidad de sus espacios. Inspirado en N.A.V.I., busca eliminar barreras físicas, sensoriales y comunicacionales para personas con discapacidad.</p>}
             </div>
             <div onClick={() => toggle(2)} className="faq-item">
               <h3>¿Qué hacemos?</h3>
-              {open === 2 && <p>Nos enfocamos en ...</p>}
+              {open === 2 && <p>El proyecto busca establecer un estándar corporativo de accesibilidad en grandes empresas y cadenas de Montevideo. Con S.A.V.I., las compañías podrán registrar, verificar y comunicar la accesibilidad de sus locales, evitando la frustración de las personas con discapacidad al encontrar espacios no adaptados.</p>}
             </div>
             <div onClick={() => toggle(3)} className="faq-item">
               <h3>¿Cómo contactarnos?</h3>
-              {open === 3 && <p>Puedes escribirnos a ...</p>}
+              {open === 3 && <p>Puedes escribirnos a nuestro mail: savi@gmail.com.uy o a través de nuestras redes sociales.</p>}
             </div>
             <div onClick={() => toggle(4)} className="faq-item">
               <h3>¿Cómo ser colaborador?</h3>
-              {open === 4 && <p>Para colaborar puedes ...</p>}
+              {open === 4 && <p>Para colaborar puedes ponerte en contacto con nosotros a través de nuestro mail o redes sociales.</p>}
             </div>
           </div>
         </div>
@@ -81,11 +92,12 @@ const Inicio = () => {
       </section>
 
       <footer className="footer">
-        <p>Contacto: 091 222 333 — savi@gmail.com.uy</p>
-        <div className="socials">
-          <span>📷</span>
-          <span>📘</span>
-          <span>🐦</span>
+        <div className="footer-text">Contacto: 091 222 333 — savi@gmail.com.uy</div>
+        <div className="footer-socials">
+          <span><FaInstagram /></span>
+          <span><FaLinkedin /></span>
+          <span><FaWhatsapp /></span>
+          <span><MdMailOutline /></span>
         </div>
       </footer>
     </div>

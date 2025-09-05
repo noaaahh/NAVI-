@@ -7,23 +7,19 @@ require 'conexion.php';
 // Precargamos variables que pueden venir por POST o GET
 $accion = isset($_POST['accion']) ? $_POST['accion'] : "";
 $_GET["usuario_id"] = isset($_GET["usuario_id"]) ? $_GET["usuario_id"] : "";
-// si esta seteada(isset) la variable id en POST, entonces la guardo en $id, si no, la tomo de GET
 $usuario_id = isset($_POST["usuario_id"]) ? $_POST["usuario_id"] : $_GET["usuario_id"];
 
-$sql = "SELECT * FROM NAVI WHERE publicado = 1 ORDER BY nombre";
+$sql = "SELECT * FROM savi WHERE publicado = 1 ORDER BY nombre";
 
 if ($accion == "agregar") {
-    // Escapear todos los datos de post para evitar hackeo de la base de datos
     $usuario_id = $mysqli->real_escape_string($_POST['usuario_id']);
     $nombre = $mysqli->real_escape_string($_POST['nombre']);
     $email = $mysqli->real_escape_string($_POST['email']);
     $contraseña = $mysqli->real_escape_string($_POST['contraseña']);
 
-    $sql = "INSERT INTO NAVI (usuario_id, nombre, email, contraseña)
+    $sql = "INSERT INTO savi (usuario_id, nombre, email, contraseña)
         VALUES ('$usuario_id', '$nombre', '$email', '$contraseña')";
 
-
-    // Si la consulta ejecuto correctamente
     if ($mysqli->query($sql) === TRUE) {
         header("Location: index.php?usuario_id=" . $usuario_id);
         exit();
@@ -35,7 +31,7 @@ if ($accion == "agregar") {
 
 
 if (strlen($usuario_id) && is_numeric($usuario_id)) {
-    $sql = "SELECT nombre, email, contraseña, usuario_id FROM NAVI where usuario_id='{$usuario_id}'";
+    $sql = "SELECT nombre, email, contraseña, usuario_id FROM savi where usuario_id='{$usuario_id}'";
     $resultado = $mysqli->query($sql);
     // Obtengo la primer tupla con sus valores por nombre de columna
     $fila = $resultado->fetch_assoc();
