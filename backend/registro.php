@@ -56,7 +56,7 @@ if ($accion == "agregar") {
 
           <!-- Nombre -->
           <div class="mb-3">
-            <label for="nombre" class="form-label">Nombre:</label>
+            <label for="nombre" class="form-label">Nombre de la empresa:</label>
             <input type="text" name="nombre" id="nombre" class="form-control" required>
           </div>
 
@@ -69,6 +69,11 @@ if ($accion == "agregar") {
           <!-- Contraseña -->
           <div class="mb-3">
             <label for="password" class="form-label">Contraseña:</label>
+            <input type="password" name="password" id="password" class="form-control" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="password" class="form-label">Confirmar contraseña:</label>
             <input type="password" name="password" id="password" class="form-control" required>
           </div>
 
