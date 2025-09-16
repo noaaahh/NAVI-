@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ModalLogin from "./ModalLogin";
 import "./Inicio.css";
 import { FaInstagram } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
@@ -7,6 +8,7 @@ import { MdMailOutline } from "react-icons/md";
 
 const Inicio = () => {
   const [open, setOpen] = useState(null);
+  const [showLogin, setShowLogin] = useState(false);
 
   const toggle = (i) => {
     setOpen(open === i ? null : i);
@@ -17,7 +19,7 @@ const Inicio = () => {
 
       <section className="hero">
         <div className="nav-links">
-          <button>Iniciar sesión</button>
+          <button onClick={() => setShowLogin(true)}>Iniciar sesión</button>
           <button className="btn-destacado">Ir a la web</button>
           <button>Registrarse</button>
         </div>
@@ -100,6 +102,7 @@ const Inicio = () => {
           <span><MdMailOutline /></span>
         </div>
       </footer>
+      <ModalLogin isOpen={showLogin} onClose={() => setShowLogin(false)} />
     </div>
   );
 };
