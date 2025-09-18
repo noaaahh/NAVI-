@@ -6,7 +6,7 @@ import { FaLinkedin } from "react-icons/fa";
 import { FaWhatsapp } from "react-icons/fa";
 import { MdMailOutline } from "react-icons/md";
 
-const Inicio = () => {
+const Inicio = ({ onGoRegistro }) => {
   const [open, setOpen] = useState(null);
   const [showLogin, setShowLogin] = useState(false);
 
@@ -20,8 +20,7 @@ const Inicio = () => {
       <section className="hero">
         <div className="nav-links">
           <button onClick={() => setShowLogin(true)}>Iniciar sesión</button>
-          <button className="btn-destacado">Ir a la web</button>
-          <button>Registrarse</button>
+          <button onClick={onGoRegistro}>Registrarse</button>
         </div>
         <div className="logo-title">
           <img src="https://i.imgur.com/5MlZOKV.png" alt="Logo SAVI" className="logo" />
