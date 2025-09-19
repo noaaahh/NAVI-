@@ -13,6 +13,15 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+a, html, body, #root { box-sizing: border-box; }
+
+a, *::before, *::after { box-sizing: inherit; }
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -24,12 +33,9 @@ a:hover {
 
 body {
   margin: 0;
-  min-width: 100vw;
+  display: block;
+  min-width: 320px;
   min-height: 100vh;
-  width: 100vw;
-  height: 100vh;
-  background: #fff;
-  color: #000;
 }
 
 h1 {
