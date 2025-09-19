@@ -1,0 +1,179 @@
+.membresias-page {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.membresias-hero {
+  background: url("https://i.imgur.com/WNfh2PS.jpeg") center/cover no-repeat;  
+  min-height: 400px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 0;
+  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.4);
+}
+
+.membresias-hero::before {
+  content: "";
+  position: absolute;
+  left: 10%;
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+  transform: translateY(-50%);
+  font-size: 120px;
+  color: white;
+  opacity: 0.9;
+  font-weight: bold;
+}
+
+.membresias-title {
+  color: #ffffff;
+  font-size: 48px;
+  font-weight: 800;
+}
+
+.nav-links {
+  position: absolute;
+  top: 18px;
+  left: 24px;
+  display: flex;
+  gap: 10px;
+}
+
+.nav-links button {
+  padding: 8px 12px;
+  border: none;
+  background: #ffffff;
+  color: #000000;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.btn-secondary {
+  background: #e9eef6;
+}
+
+.membresias-main {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: #f2f5f9;
+  padding: 0 20px 70px;
+  margin-top: -120px;
+  position: relative;
+  z-index: 10;
+}
+
+.cards-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  padding: 40px 20px 40px;
+  align-items: stretch;
+  /* todas las cards a la misma altura */
+}
+
+.card {
+  background: #bfe6ff;
+  color: #000000;
+  border: 2px solid #6ec0ff;
+  left: 55px;
+  border-radius: 24px;
+  padding: 25px 20px 70px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  min-height: 360px;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
+}
+
+.precio {
+  position: absolute;
+  top: 350px;
+  right: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #333;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 3px 6px;
+  border-radius: 4px;
+}
+
+.card.central {
+  transform: translateY(20px);
+}
+
+.card h3 {
+  text-align: center;
+  font-size: 24px;
+  margin: 0 0 12px;
+  font-weight: bold;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+.resumen {
+  text-align: center;
+  font-weight: 600;
+  margin: 0 0 12px;
+  font-size: 16px;
+}
+
+.detalle {
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.4;
+  margin-bottom: auto;
+  /* 🔑 empuja el botón al fondo */
+}
+
+.seleccionar {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  background: #0a7bdc;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.membresias-page .footer {
+  margin-top: auto;
+}
+
+.footer {
+  background: #ffffff;
+  font-family: "Bali Simbar", sans-serif;
+  color: black;
+  padding: 20px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #e0e0e0;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 15px;
+  font-size: 22px;
+}
+
+.footer-text {
+  font-size: 16px;
+}
