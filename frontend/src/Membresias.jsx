@@ -14,8 +14,8 @@ export default function Membresias() {
     <div className="membresias-page">
       <section className="membresias-hero">
         <div className="nav-links">
-          <button>Inicio</button>
-          <button className="btn-secondary" onClick={() => (window.location.hash = '#perfil')}>Volver atrás</button>
+          <button onClick={() => (window.location.hash = '#inicio')}>Inicio</button>
+          <button className="btn-secondary" onClick={() => (window.location.hash = '#registroempresa')}>Volver atrás</button>
         </div>
         <h1 className="membresias-title">Opciones de membresía:</h1>
       </section>

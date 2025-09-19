@@ -6,15 +6,33 @@
   align-items: flex-end;
   justify-content: center;
   padding-bottom: 24px;
-  box-shadow: inset 0 0 0 1000px rgba(0,0,0,0.45);
+}
+
+.perfil-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 1;
+}
+
+.perfil-hero > * {
+  position: relative;
+  z-index: 2;
 }
 .perfil-title {
   color: #fff;
   font-size: 44px;
   font-weight: 800;
 }
+.card-edit { font-size: 0.8em; }
 .nav-links {
   position: absolute;
+  background-color: #000000;
+  color: #ffffff;
   top: 18px;
   left: 24px;
   display: flex;

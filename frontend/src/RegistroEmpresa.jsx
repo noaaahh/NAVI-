@@ -14,15 +14,24 @@ export default function RegistroEmpresa() {
 
   const handle = (k, v) => setForm(p => ({ ...p, [k]: v }));
   const toggle = (k, f) => setAcc(p => ({ ...p, [k]: { ...p[k], [f]: !p[k][f] } }));
-  const submit = (e) => { e.preventDefault(); alert("Registro enviado (demo)"); };
+  const submit = (e) => { 
+    e.preventDefault(); 
+    alert("Registro enviado (demo)"); 
+    window.location.hash = '#membresias';
+  };
 
   return (
     <div className="perfil-emp-page">
       <header className="pe-hero">
         <div className="nav-links">
-          <button>Inicio</button>
-          <button className="btn-secondary" onClick={() => (window.location.hash = '#perfil')}>Volver atrás</button>
+          <button onClick={() => (window.location.hash = '#inicio')}>Inicio</button>
+          <button className="btn-secondary" onClick={() => (window.location.hash = '#registro')}>Volver atrás</button>
         </div>
+        <img
+          className="pe-hero-img"
+          src="https://i.imgur.com/9bmoDHn.png"
+          alt="Bienvenida"
+        />
         <h1 className="pe-title">Registra tu empresa en SAVI</h1>
       </header>
 
@@ -48,12 +57,12 @@ export default function RegistroEmpresa() {
         <section className="pe-card acc">
           <h2>¿Qué servicios de accesibilidad ofrecen?</h2>
           {Object.keys(acc).map((k) => (
-            <div className="acc-row" key={k}>
+            <div className="acc-box" key={k}>
               <div className="acc-label">Pasillos min 90cm</div>
               <label className={`acc-box ${acc[k].ramp ? 'checked' : ''}`}>
                 <input type="checkbox" checked={acc[k].ramp} onChange={() => toggle(k,'ramp')} />
                 <span>Rampa</span>
-              </label>
+               </label>
               <label className={`acc-box ${acc[k].elevator ? 'checked' : ''}`}>
                 <input type="checkbox" checked={acc[k].elevator} onChange={() => toggle(k,'elevator')} />
                 <span>Ascensor</span>

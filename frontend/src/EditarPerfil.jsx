@@ -33,8 +33,7 @@ export default function EditarPerfil() {
     <div className="editar-modal-backdrop" onClick={() => window.history.back()}>
       <div className="editar-modal-card" role="dialog" aria-modal="true" onClick={e => e.stopPropagation()}>
         <button className="close-x" aria-label="Cerrar" onClick={() => window.history.back()}>×</button>
-        <h1 className="editar-title">Edita tu perfil <span className="lapiz" aria-hidden><FaRegEdit />
-        </span></h1>
+        <h1 className="editar-title">Edita tu perfil <span className="lapiz" aria-hidden="true"><FaRegEdit /></span></h1>
         <div className="editar-subtitle">Elige la información sobre tu local</div>
 
         <form onSubmit={handleSubmit} className="editar-form">
