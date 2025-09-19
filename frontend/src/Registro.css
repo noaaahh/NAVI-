@@ -89,7 +89,7 @@
 .registro__selector {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 28px;
+  gap: 15px;
   padding: 40px 24px 24px;
   background: #ededed;
 }
@@ -100,42 +100,72 @@
   padding: 28px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  min-height: 280px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+  justify-content: center;
+  min-height: 500px;
+  max-width: 400px;
+  box-shadow: 0 18px 50px rgba(0,0,0,0.20);
+  text-align: center;
+  align-items: center;
+  position: relative;
+  margin-left: 250px;
+  z-index: 1;
 }
 
 .registro__selector-intro h2 {
   margin: 0 0 12px;
+  text-align: center;
+  font-weight: 500;
+  font-size: xx-large;
 }
 
-.registro__hand { font-size: 84px; }
+.registro__hand { 
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+
+.registro__hand img {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+}
 
 .registro__selector-options {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 100px;
   align-items: flex-start;
   justify-content: center;
 }
 
 .registro__option {
   width: min(540px, 90%);
+  height: 150px;
   background: #fff;
+  color: #000000;
   border: none;
   border-radius: 16px;
   padding: 18px 20px;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+  box-shadow: 0 18px 50px rgba(0,0,0,0.20);
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-size: 20px;
 }
 
+.registro__option-label { display: flex; flex-direction: column; align-items: flex-start; }
+.registro__option-title { font-weight: 600; font-size: 28px; line-height: 1.1; }
+.registro__option-subtitle { margin-top: 4px; font-size: 17px; color: #1a1a1a; }
+
 .registro__option-right {
   display: inline-flex;
   align-items: center;
   gap: 14px;
+}
+
+/* Engrosar flechas de los botones */
+.registro__option-right svg {
+  stroke-width: 3.5;
 }
 
 .registro__dot {

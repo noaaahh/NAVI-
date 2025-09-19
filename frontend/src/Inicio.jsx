@@ -6,7 +6,7 @@ import { FaLinkedin } from "react-icons/fa";
 import { FaWhatsapp } from "react-icons/fa";
 import { MdMailOutline } from "react-icons/md";
 
-const Inicio = ({ onGoRegistro }) => {
+const Inicio = ({ onGoRegistro, onGoInicioUsuario }) => {
   const [open, setOpen] = useState(null);
   const [showLogin, setShowLogin] = useState(false);
 
@@ -101,7 +101,7 @@ const Inicio = ({ onGoRegistro }) => {
           <span><MdMailOutline /></span>
         </div>
       </footer>
-      <ModalLogin isOpen={showLogin} onClose={() => setShowLogin(false)} />
+      <ModalLogin isOpen={showLogin} onClose={() => setShowLogin(false)} onLoginSuccess={onGoInicioUsuario} />
     </div>
   );
 };

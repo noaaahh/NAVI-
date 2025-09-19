@@ -1,42 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Registro.css";
 import { FaInstagram, FaLinkedin, FaWhatsapp } from "react-icons/fa";
 import { MdMailOutline } from "react-icons/md";
 import { HiOutlineArrowNarrowRight } from "react-icons/hi";
+import ModalLogin from "./ModalLogin";
 
-const Registro = ({ onBack }) => {
+const Registro = ({ onBack, onGoRegistroPersonal, onGoInicioUsuario }) => {
+  const [showLogin, setShowLogin] = useState(false);
+
   return (
     <div className="registro">
       <section className="registro__hero">
         <nav className="registro__nav">
-          <button className="registro__btn">Iniciar sesión</button>
-          <button className="registro__btn registro__btn--primary">Ayuda</button>
-          <button className="registro__btn" onClick={onBack}>Volver atrás</button>
+          <button className="registro__btn" onClick={() => setShowLogin(true)}>Iniciar sesión</button>
+          <button className="registro__btn registro__btn--primary" onClick={onBack}>Inicio</button>
         </nav>
         <img
           className="registro__hero-img"
           src="https://i.imgur.com/XhHkOp3.png"
           alt="Piso táctil accesibilidad"
         />
-        <h1 className="registro__hero-title">¡Bienvenido!</h1>
-      </section>
-
-      <section className="registro__cards">
-        <div className="registro__cards-bg" />
-        <div className="registro__card">
-          <h3>USUARIO PERSONAL</h3>
-          <p>
-            Consulta y califica a tus lugares favoritos para comer, ¡Nos
-            interesa mucho tu opinión!
-          </p>
-        </div>
-        <div className="registro__card">
-          <h3> USUARIO EMPRESARIAL</h3>
-          <p>
-            Registra tu empresa y sé parte de SAVI, ayudándonos a construir
-            accesibilidad para todos.
-          </p>
-        </div>
+        <h1 className="registro__hero-title">¡Unite a nuestra comunidad!!</h1>
       </section>
 
       <section className="registro__selector">
@@ -45,20 +29,26 @@ const Registro = ({ onBack }) => {
             Selecciona el tipo de registro que se ajuste a tu perfil.
           </h2>
           <div className="registro__hand" aria-hidden="true">
-            <img src="https://i.imgur.com/n2D1rOn.png" alt="Accesibilidad" />
+            <img src="https://i.imgur.com/5NTE4aI.png" alt="Accesibilidad" />
           </div>
         </div>
 
         <div className="registro__selector-options">
-          <button className="registro__option">
-            <span>Registro personal</span>
+          <button className="registro__option" onClick={onGoRegistroPersonal}>
+            <span className="registro__option-label">
+              <span className="registro__option-title">Registro personal</span>
+              <span className="registro__option-subtitle">Registrate y empeza a calificar tus lugares favoritos.</span>
+            </span>
             <span className="registro__option-right">
               <span className="registro__dot" />
               <HiOutlineArrowNarrowRight />
             </span>
           </button>
           <button className="registro__option">
-            <span>Registro empresarial</span>
+            <span className="registro__option-label">
+              <span className="registro__option-title">Registro empresarial</span>
+              <span className="registro__option-subtitle">Registra tu empresa y sé parte de SAVI, Iniciondonos a construir accesibilidad para todos.</span>
+            </span>
             <span className="registro__option-right">
               <span className="registro__dot" />
               <HiOutlineArrowNarrowRight />
@@ -78,6 +68,7 @@ const Registro = ({ onBack }) => {
           <span>Contacto: 091 222 333 — savi@gmail.com.uy</span>
         </div>
       </footer>
+      <ModalLogin isOpen={showLogin} onClose={() => setShowLogin(false)} onLoginSuccess={onGoInicioUsuario} />
     </div>
   );
 };

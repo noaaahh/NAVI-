@@ -1,7 +1,7 @@
 import React from "react";
 import "./ModalLogin.css";
 
-const ModalLogin = ({ isOpen, onClose }) => {
+const ModalLogin = ({ isOpen, onClose, onLoginSuccess }) => {
   if (!isOpen) return null;
   return (
     <div className="modal-login-backdrop" onClick={onClose}>
@@ -14,7 +14,7 @@ const ModalLogin = ({ isOpen, onClose }) => {
               <input id="login-email" className="email" type="text" placeholder="Email" />
               <label className="modal-label" htmlFor="login-password">Contraseña</label>
               <input id="login-password" className="password" type="password" placeholder="Contraseña" />
-              <button className="entrar-btn">Ingresar</button>
+              <button className="entrar-btn" onClick={() => onLoginSuccess && onLoginSuccess()}>Ingresar</button>
             </div>
       </div>
     </div>

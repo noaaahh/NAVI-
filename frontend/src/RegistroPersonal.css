@@ -1,0 +1,126 @@
+.registroPersonal {
+  background: #f4f4f4;
+  color: #111;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.registroPersonal__nav {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  display: flex;
+  gap: 10px;
+  z-index: 2;
+}
+
+.registroPersonal__btn {
+  background: #f0f0f0;
+  color: #000;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 10px;
+}
+
+.registroPersonal__btn--primary { 
+    background: #0a66ff; 
+    color: #fff;
+}
+
+.registroPersonal__hero { 
+    position: relative; 
+    height: 320px; 
+    overflow: hidden; 
+}
+.registroPersonal__hero-img { 
+    position: absolute; 
+    inset: 0; width: 100%; 
+    height: 100%; object-fit: 
+    cover; 
+}
+.registroPersonal__title { 
+    position: relative; 
+    z-index: 1; 
+    margin: 0; 
+    padding: 100px 20px 0; 
+    text-align: center; 
+    color: #fff; 
+    font-size: 48px; 
+    font-weight: 800; 
+    text-shadow: 0 4px 24px rgba(0,0,0,.45); 
+}
+
+.registroPersonal__intro { 
+    background: #fff; 
+    padding: 16px 24px; 
+    text-align: center; 
+    font-weight: 600; 
+    font-size: xx-large;
+}
+
+.registroPersonal__form-wrapper { 
+    background: #e8e8e8; 
+    flex: 1; display: flex; 
+    align-items: flex-start; 
+    justify-content: center; 
+    padding: 40px 0 80px; 
+}
+.registroPersonal__form { 
+    background: #f6f6f6; 
+    border: 1px solid #d7d7d7; 
+    border-radius: 14px; 
+    box-shadow: 0 18px 50px rgba(0,0,0,0.2); 
+    padding: 28px; 
+    width: min(690px, 90%); 
+    display: flex; 
+    flex-direction: column; 
+}
+.registroPersonal__label { 
+    margin: 10px 0 6px; 
+    font-weight: 600; 
+    color: #333; 
+}
+.registroPersonal__form input { 
+    width: 95%; 
+    padding: 12px;
+    border: 2px solid #b6e6ff; 
+    border-radius: 10px; 
+    font-size: 1rem; 
+    background: #fff;
+    color: #000; 
+}
+.registroPersonal__submit { 
+    margin-top: 18px; 
+    background: #0a66ff; 
+    color: #fff; 
+    border: none; 
+    border-radius: 8px; 
+    padding: 12px; 
+    font-weight: 600; 
+}
+
+.registroPersonal__footer { 
+    margin-top: auto; 
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+    padding: 18px 24px; 
+    background: #fff; 
+}
+.registroPersonal__footer-left { 
+    display: flex; 
+    gap: 12px; 
+}
+.registroPersonal__footer-left a { 
+    color: inherit; 
+}
+
+@media (max-width: 900px) {
+  .registroPersonal__title { 
+    font-size: 36px; 
+    padding-top: 80px; 
+}
+}
+
+

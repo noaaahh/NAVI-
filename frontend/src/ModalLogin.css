@@ -1,7 +1,8 @@
 .modal-label {
   align-self: flex-start;
-  margin-bottom: 0.25rem;
-  margin-top: 0.7rem;
+  width: 100%;
+  margin-bottom: 0.1rem;
+  margin-top: 0.5rem;
   font-size: 1.08rem;
   color: #4a4a4a;
   font-weight: 600;
@@ -22,8 +23,8 @@
   background: #deeef8;
   padding: 2.5rem 2rem 2rem 2rem;
   border-radius: 14px;
-  min-width: 700px;
-  min-height: 500px;
+  min-width: 900px;
+  min-height: 700px;
   box-shadow: 0 4px 24px rgba(0,0,0,0.13);
   display: flex;
   flex-direction: column;
@@ -57,14 +58,14 @@
   border: 0.1rem solid #000000;
   flex-direction: column;
   align-items: center;
-  gap: 1.1rem;
-  min-width: 400px;
-  min-height: 200px;
+  gap: 0.8rem;
+  min-width: 600px;
+  min-height: 400px;
 }
 .modal-login-form input {
-  width: 350px;
+  width: 100%;
   padding: 0.7rem 1rem;
-  border: 1.5px solid #b6e6ff;
+  border: 2px solid #b6e6ff;
   border-radius: 10px;
   font-size: 1.08rem;
   outline: none;
@@ -81,9 +82,10 @@
   background: #0094e6;
   color: #fff;
   border: none;
+  width: 150px;
   border-radius: 7px;
   padding: 0.5rem 1.5rem;
-  font-size: 1rem;
+  font-size: 1.5rem;
   font-weight: 500;
   cursor: pointer;
   margin-top: 0.5rem;
