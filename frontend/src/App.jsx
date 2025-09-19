@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Inicio from './Inicio.jsx'
 import Perfil from './Perfil.jsx'
 import EditarPerfil from './EditarPerfil.jsx'
@@ -8,9 +8,9 @@ import RegistroEmpresa from './RegistroEmpresa.jsx'
 import './App.css'
 
 export default function App() {
-  const [hash, setHash] = React.useState(window.location.hash || '#perfil');
+  const [hash, setHash] = useState(window.location.hash || '#perfil');
 
-  React.useEffect(() => {
+  useEffect(() => {
     const onHash = () => setHash(window.location.hash || '#perfil');
     window.addEventListener('hashchange', onHash);
     if (!window.location.hash) window.location.hash = '#perfil';

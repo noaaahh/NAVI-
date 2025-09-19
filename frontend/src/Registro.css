@@ -1,0 +1,180 @@
+.registro {
+  width: 100%;
+  min-height: 100vh;
+  background: #f4f4f4;
+  color: #111;
+  display: flex;
+  flex-direction: column;
+}
+
+.registro__nav {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  display: flex;
+  gap: 10px;
+  z-index: 2;
+}
+
+.registro__btn {
+  background: #f0f0f0;
+  color: #000000;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 10px;
+}
+
+.registro__btn--primary {
+  background: #0a66ff;
+  color: #ffffff;
+}
+
+.registro__hero {
+  position: relative;
+  width: 100%;
+  height: 340px;
+  overflow: hidden;
+}
+
+.registro__hero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.registro__hero-title {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  text-align: center;
+  padding: 100px 20px 0;
+  color: #fff;
+  font-size: 56px;
+  font-weight: 800;
+  text-shadow: 0 4px 24px rgba(0,0,0,0.45);
+}
+
+.registro__cards {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  padding: 24px 24px 8px;
+  align-items: start;
+}
+
+.registro__cards-bg {
+  position: absolute;
+  inset: 10% 4% auto 4%;
+  height: 150px;
+  background: transparent;
+  border-radius: 24px;
+}
+
+.registro__card {
+  background: #eaeaea;
+  border-radius: 20px;
+  padding: 22px;
+  max-width: 340px;
+  margin: 40px 0 10px 40px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+
+.registro__card h3 {
+  margin: 0 0 8px;
+}
+
+.registro__selector {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  padding: 40px 24px 24px;
+  background: #ededed;
+}
+
+.registro__selector-intro {
+  background: #dedede;
+  border-radius: 28px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 280px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+}
+
+.registro__selector-intro h2 {
+  margin: 0 0 12px;
+}
+
+.registro__hand { font-size: 84px; }
+
+.registro__selector-options {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.registro__option {
+  width: min(540px, 90%);
+  background: #fff;
+  border: none;
+  border-radius: 16px;
+  padding: 18px 20px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 20px;
+}
+
+.registro__option-right {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.registro__dot {
+  width: 14px;
+  height: 14px;
+  background: #0a66ff;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.registro__footer {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+  background: #fff;
+  color: #222;
+}
+
+.registro__footer-left {
+  display: flex;
+  gap: 12px;
+}
+
+.registro__footer-left a {
+  color: inherit;
+}
+
+@media (max-width: 900px) {
+  .registro__cards {
+    grid-template-columns: 1fr;
+  }
+  .registro__selector {
+    grid-template-columns: 1fr;
+  }
+  .registro__card {
+    margin-left: 0;
+  }
+}
+
+
