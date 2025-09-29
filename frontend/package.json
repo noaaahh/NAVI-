@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "vite --host",
+    "dev:full": "echo 'Iniciando Frontend...' && vite --host"
   },
   "dependencies": {
     "react": "^19.1.1",

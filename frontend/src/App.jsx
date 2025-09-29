@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useAuth } from './hooks/useAuth'
 import Inicio from './Inicio.jsx'
 import Registro from './Registro.jsx'
 import RegistroPersonal from './RegistroPersonal.jsx'
@@ -12,6 +13,7 @@ import './App.css'
 
 export default function App() {
   const [hash, setHash] = useState(window.location.hash || '#inicio');
+  const { user, isAuthenticated } = useAuth();
 
   useEffect(() => {
     const onHash = () => setHash(window.location.hash || '#inicio');
