@@ -5,7 +5,7 @@ import { MdMailOutline } from "react-icons/md";
 import { HiOutlineArrowNarrowRight } from "react-icons/hi";
 import ModalLogin from "./ModalLogin";
 
-const Registro = ({ onBack, onGoRegistroPersonal, onGoInicioUsuario }) => {
+const Registro = ({ onBack, onGoRegistroPersonal, onGoInicioUsuario, onGoRegistroEmpresa }) => {
   const [showLogin, setShowLogin] = useState(false);
 
   return (
@@ -44,7 +44,7 @@ const Registro = ({ onBack, onGoRegistroPersonal, onGoInicioUsuario }) => {
               <HiOutlineArrowNarrowRight />
             </span>
           </button>
-          <button className="registro__option">
+          <button className="registro__option" onClick={onGoRegistroEmpresa}>
             <span className="registro__option-label">
               <span className="registro__option-title">Registro empresarial</span>
               <span className="registro__option-subtitle">Registra tu empresa y sé parte de SAVI, Iniciondonos a construir accesibilidad para todos.</span>

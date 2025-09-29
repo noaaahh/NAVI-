@@ -12,14 +12,15 @@ export default function FormaPago() {
   const submit = (e) => {
     e.preventDefault();
     alert(`Pago enviado (demo) - Plan: ${plan}`);
+    window.location.hash = '#perfil';
   };
 
   return (
     <div className="membresia-page">
       <section className="membresia-hero">
         <div className="nav-links">
-          <button>Inicio</button>
-          <button className="btn-secondary" onClick={() => (window.location.hash = '#perfil')}>Volver atrás</button>
+          <button onClick={() => (window.location.hash = '#inicio')}>Inicio</button>
+          <button className="btn-secondary" onClick={() => (window.location.hash = '#membresias')}>Volver atrás</button>
         </div>
         <h1 className="membresia-title">Opciones de membresía:</h1>
       </section>

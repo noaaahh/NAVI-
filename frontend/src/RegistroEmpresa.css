@@ -16,11 +16,23 @@
   box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.45);
 }
 
+.pe-hero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
 .pe-title {
-  color: #fff;
+  color: #ffffff;
   font-size: 44px;
   font-weight: 800;
   text-align: center;
+  position: relative;
+  z-index: 2;
+  margin-bottom: 90px;
 }
 
 .nav-links {
@@ -29,6 +41,7 @@
   left: 24px;
   display: flex;
   gap: 10px;
+  z-index: 3;
 }
 
 .nav-links button {
@@ -45,13 +58,16 @@
 }
 
 .pe-subtitle {
-  background: #efefef;
+  background: #ffffff;
+  color: #000000;
   text-align: center;
   padding: 14px 10px;
   font-weight: 700;
+  font-size: x-large;
 }
 
 .pe-main {
+  background-color: #c2c2c2;
   display: grid;
   grid-template-columns: repeat(2, minmax(320px, 1fr));
   gap: 28px;
@@ -59,7 +75,8 @@
 }
 
 .pe-card {
-  background: #fff;
+  background: #ffffff;
+  color: #000000;
   border: 1px solid #e5e7eb;
   border-radius: 14px;
   padding: 20px;
@@ -70,10 +87,18 @@
   font-weight: 600;
   margin: 12px 4px 6px;
   display: block;
+  max-width: 70%;
+}
+
+.form {
+  position: relative;
+  z-index: 1;
 }
 
 .pe-input {
-  width: 100%;
+  width: 95%;
+  background-color: #ffffff;
+  color: #000000;
   border: 1.5px solid #b6e6ff;
   border-radius: 8px;
   padding: 12px 14px;
@@ -89,6 +114,21 @@
   cursor: pointer;
   font-weight: 600;
   width: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  transition: background-color 0.2s;
+  position: relative;
+  z-index: 2;
+  font-size: 16px;
+}
+
+.pe-submit:hover {
+  background: #0856a3;
+}
+
+.pe-submit:active {
+  transform: translateY(1px);
 }
 
 .acc h2 {
