@@ -1,5 +1,5 @@
 .registroPersonal {
-  background: #f4f4f4;
+  background: #e6f3ff;
   color: #111;
   min-height: 100vh;
   display: flex;
@@ -7,20 +7,30 @@
 }
 
 .registroPersonal__nav {
-  position: absolute;
+  position: fixed;
   top: 16px;
   left: 16px;
   display: flex;
   gap: 10px;
-  z-index: 2;
+  z-index: 1000;
+  background: rgba(173, 216, 230, 0.95) !important;
+  background-color: rgba(173, 216, 230, 0.95) !important;
+  padding: 10px 15px;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
 }
 
 .registroPersonal__btn {
-  background: #f0f0f0;
+  background: #ffffff;
   color: #000;
   border: none;
   padding: 10px 16px;
-  border-radius: 10px;
+  border-radius: 12px;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
 
 .registroPersonal__btn--primary { 
@@ -114,6 +124,11 @@
 }
 .registroPersonal__footer-left a { 
     color: inherit; 
+    font-size: 22px;
+}
+
+.registroPersonal__footer-left a:hover { 
+    color: #0a66ff;
 }
 
 @media (max-width: 900px) {

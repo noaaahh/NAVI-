@@ -1,5 +1,10 @@
+body {
+  background-color: #f6fbff;
+}
+
 .membresia-hero {
   background: url("https://i.imgur.com/WNfh2PS.jpeg") center/cover no-repeat;
+  background-attachment: fixed;
   min-height: 260px;
   position: relative;
   display: flex;
@@ -15,25 +20,38 @@
   font-weight: 800;
 }
 
-.nav-links {
-  position: absolute;
+.formapago-page .nav-links {
+  position: fixed;
   top: 18px;
   left: 24px;
   display: flex;
   gap: 10px;
+  z-index: 1000;
+  background: rgba(173, 216, 230, 0.95) !important;
+  background-color: rgba(173, 216, 230, 0.95) !important;
+  padding: 10px 15px;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
 }
 
-.nav-links button {
-  padding: 8px 12px;
-  border: none;
-  background: #ffffff;
-  color: #000000;
+.formapago-page .nav-links button {
+  padding: 10px 16px;
+  border: none !important;
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  color: #000000 !important;
   cursor: pointer;
-  border-radius: 10px;
+  border-radius: 12px;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
 
-.btn-secondary {
-  background: #e9eef6;
+.formapago-page .nav-links .btn-secondary {
+  background: #e9eef6 !important;
+  background-color: #e9eef6 !important;
 }
 
 .membresia-main {

@@ -3,11 +3,13 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+  background-color: #e6f3ff;
 }
 
 .membresias-hero {
-  background: url("https://i.imgur.com/WNfh2PS.jpeg") center/cover no-repeat;  
-  min-height: 400px;
+  background: url("https://i.imgur.com/WNfh2PS.jpeg") center/cover no-repeat;
+  background-attachment: fixed;
+  min-height: 550px;
   position: relative;
   display: flex;
   align-items: center;
@@ -37,121 +39,246 @@
   font-weight: 800;
 }
 
-.nav-links {
-  position: absolute;
+.membresias-page .nav-links {
+  position: fixed;
   top: 18px;
   left: 24px;
   display: flex;
   gap: 10px;
+  z-index: 1000;
+  background: rgba(173, 216, 230, 0.95) !important;
+  background-color: rgba(173, 216, 230, 0.95) !important;
+  padding: 10px 15px;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
 }
 
-.nav-links button {
-  padding: 8px 12px;
-  border: none;
-  background: #ffffff;
-  color: #000000;
+.membresias-page .nav-links button {
+  padding: 10px 16px;
+  border: none !important;
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  color: #000000 !important;
   cursor: pointer;
-  border-radius: 10px;
+  border-radius: 12px;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
 
-.btn-secondary {
-  background: #e9eef6;
+.membresias-page .nav-links .btn-secondary {
+  background: #e9eef6 !important;
+  background-color: #e9eef6 !important;
 }
 
 .membresias-main {
-  justify-content: center;
-  align-items: center;
-  text-align: center;
   background: #f2f5f9;
-  padding: 0 20px 70px;
+  padding: 40px 20px 70px;
   margin-top: -120px;
   position: relative;
   z-index: 10;
-  background-color: #d3d3d3;
 }
 
 .cards-grid {
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 25px;
-  padding: 40px 20px 40px;
-  align-items: stretch;
-  /* todas las cards a la misma altura */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  padding: 40px 20px;
+  align-items: start;
 }
 
-.card {
-  background: #bfe6ff;
-  color: #000000;
-  border: 2px solid #6ec0ff;
-  left: 55px;
-  border-radius: 24px;
-  padding: 25px 20px 70px;
-  text-align: center;
+.plan-card {
+  background: #ffffff;
+  border-radius: 15px;
+  padding: 30px 25px;
+  text-align: left;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  min-height: 500px;
   display: flex;
   flex-direction: column;
-  position: relative;
-  min-height: 360px;
-  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
 }
 
-.precio {
+.plan-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.plan-card.premium {
+  background: #0077b6;
+  color: #ffffff;
+  transform: scale(1.05);
+}
+
+.plan-card.premium:hover {
+  transform: scale(1.05) translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0, 119, 182, 0.3);
+}
+
+.popular-badge {
   position: absolute;
-  top: 350px;
-  right: 12px;
-  font-size: 11px;
-  font-weight: 600;
-  color: #333;
-  background: rgba(255, 255, 255, 0.9);
-  padding: 3px 6px;
-  border-radius: 4px;
-}
-
-.card.central {
-  transform: translateY(20px);
-}
-
-.card h3 {
-  text-align: center;
-  font-size: 24px;
-  margin: 0 0 12px;
-  font-weight: bold;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-
-
-.resumen {
-  text-align: center;
-  font-weight: 600;
-  margin: 0 0 12px;
-  font-size: 16px;
-}
-
-.detalle {
-  text-align: center;
+  top: -10px;
+  background: #ffd700;
+  color: #000000;
+  padding: 8px 16px;
+  border-radius: 20px;
   font-size: 14px;
-  line-height: 1.4;
-  margin-bottom: auto;
-  /* 🔑 empuja el botón al fondo */
+  font-weight: bold;
+  z-index: 10;
+  transition: transform 0.3s ease;
+  animation: pulse 2s infinite;
 }
 
-.seleccionar {
-  position: absolute;
-  bottom: 15px;
-  right: 15px;
-  background: #0a7bdc;
-  color: #fff;
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.plan-card.premium:hover .popular-badge {
+  transform: scale(1.1);
+  animation: none;
+}
+
+.plan-icon {
+  margin-bottom: 20px;
+}
+
+.icon-circle {
+  width: 40px;
+  height: 40px;
+  background: #0077b6;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.plan-card.premium .icon-circle {
+  background: #ffffff;
+  color: #0077b6;
+}
+
+.icon-star {
+  font-size: 40px;
+  color: #0077b6;
+}
+
+.plan-card.premium .icon-star {
+  color: #ffffff;
+}
+
+.plan-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0 0 8px;
+  color: #0077b6;
+}
+
+.plan-card.premium .plan-title {
+  color: #ffffff;
+}
+
+.plan-subtitle {
+  font-size: 16px;
+  color: #666666;
+  margin: 0 0 20px;
+  font-weight: 500;
+}
+
+.plan-card.premium .plan-subtitle {
+  color: #ffffff;
+}
+
+.plan-price {
+  margin-bottom: 20px;
+}
+
+.price-main {
+  font-size: 32px;
+  font-weight: bold;
+  color: #0700CF;
+}
+
+.plan-card.premium .price-main {
+  color: #ffffff;
+}
+
+.price-period {
+  font-size: 16px;
+  color: #666666;
+  font-weight: normal;
+}
+
+.plan-card.premium .price-period {
+  color: #ffffff;
+}
+
+.plan-description {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #333333;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.plan-card.premium .plan-description {
+  color: #ffffff;
+}
+
+.plan-price-annual {
+  font-size: 14px;
+  color: #666666;
+  margin-bottom: 25px;
+  font-weight: 500;
+}
+
+.plan-card.premium .plan-price-annual {
+  color: #ffffff;
+}
+
+.plan-button {
+  width: 100%;
+  padding: 12px 20px;
   border: none;
   border-radius: 8px;
-  padding: 6px 12px;
-  cursor: pointer;
+  font-size: 16px;
   font-weight: 600;
-  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  transform: translateY(0);
+}
+
+.plan-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.basico-btn, .plus-btn {
+  background: #0077b6;
+  color: #ffffff;
+}
+
+.basico-btn:hover, .plus-btn:hover {
+  background: #005a8b;
+}
+
+.premium-btn {
+  background: #ffffff;
+  color: #0077b6;
+}
+
+.premium-btn:hover {
+  background: #f0f0f0;
 }
 
 .membresias-page .footer {

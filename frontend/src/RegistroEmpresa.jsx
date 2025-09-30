@@ -6,10 +6,10 @@ import "./RegistroEmpresa.css";
 export default function RegistroEmpresa() {
   const [form, setForm] = useState({ name: "", email: "", pass: "", pass2: "" });
   const [acc, setAcc] = useState({
-    a: { ramp: false, elevator: true },
-    b: { ramp: false, elevator: false },
-    c: { ramp: false, elevator: false },
-    d: { ramp: false, elevator: false }
+    a: { pasillos: false, ramp: false, elevator: true },
+    b: { pasillos: false, ramp: false, elevator: false },
+    c: { pasillos: false, ramp: false, elevator: false },
+    d: { pasillos: false, ramp: false, elevator: false }
   });
 
   const handle = (k, v) => setForm(p => ({ ...p, [k]: v }));
@@ -57,12 +57,15 @@ export default function RegistroEmpresa() {
         <section className="pe-card acc">
           <h2>¿Qué servicios de accesibilidad ofrecen?</h2>
           {Object.keys(acc).map((k) => (
-            <div className="acc-box" key={k}>
-              <div className="acc-label">Pasillos min 90cm</div>
+            <div className="acc-row" key={k}>
+              <label className={`acc-box ${acc[k].pasillos ? 'checked' : ''}`}>
+                <input type="checkbox" checked={acc[k].pasillos} onChange={() => toggle(k,'pasillos')} />
+                <span>Pasillos min 90cm</span>
+               </label>
               <label className={`acc-box ${acc[k].ramp ? 'checked' : ''}`}>
                 <input type="checkbox" checked={acc[k].ramp} onChange={() => toggle(k,'ramp')} />
                 <span>Rampa</span>
-               </label>
+              </label>
               <label className={`acc-box ${acc[k].elevator ? 'checked' : ''}`}>
                 <input type="checkbox" checked={acc[k].elevator} onChange={() => toggle(k,'elevator')} />
                 <span>Ascensor</span>

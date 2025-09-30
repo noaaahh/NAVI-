@@ -8,21 +8,55 @@ export default function FormaPago() {
   const [cardNumber, setCardNumber] = useState("");
   const [cvv, setCvv] = useState("");
   const [expiry, setExpiry] = useState("");
+  
+  const [planSeleccionado, setPlanSeleccionado] = useState(() => {
+    try {
+      return localStorage.getItem("planSeleccionado") || "basico";
+    } catch {
+      return "basico";
+    }
+  });
+
+  // Función para obtener la información del plan
+  const getPlanInfo = () => {
+    switch(planSeleccionado) {
+      case "premium":
+        return {
+          nombre: "Plan premium",
+          precioMensual: "65 USD",
+          precioAnual: "780 USD"
+        };
+      case "plus":
+        return {
+          nombre: "Plan plus", 
+          precioMensual: "90 USD",
+          precioAnual: "1080 USD"
+        };
+      default:
+        return {
+          nombre: "Plan básico",
+          precioMensual: "35 USD", 
+          precioAnual: "250 USD"
+        };
+    }
+  };
+
+  const planInfo = getPlanInfo();
 
   const submit = (e) => {
     e.preventDefault();
-    alert(`Pago enviado (demo) - Plan: ${plan}`);
+    alert(`Pago enviado (demo) - ${planInfo.nombre} ${plan}`);
     window.location.hash = '#perfil';
   };
 
   return (
-    <div className="membresia-page">
+    <div className="formapago-page">
       <section className="membresia-hero">
         <div className="nav-links">
           <button onClick={() => (window.location.hash = '#inicio')}>Inicio</button>
           <button className="btn-secondary" onClick={() => (window.location.hash = '#membresias')}>Volver atrás</button>
         </div>
-        <h1 className="membresia-title">Opciones de membresía:</h1>
+        <h1 className="membresia-title">{planInfo.nombre} - Opciones de pago:</h1>
       </section>
 
       <main className="membresia-main">
@@ -30,11 +64,11 @@ export default function FormaPago() {
           <div className="plan-row">
             <label className={`plan ${plan==='mensual' ? 'checked' : ''}`}>
               <input type="radio" name="plan" checked={plan==='mensual'} onChange={() => setPlan('mensual')} />
-              <span>Plan básico mensual</span>
+              <span>{planInfo.nombre} mensual - {planInfo.precioMensual}</span>
             </label>
             <label className={`plan ${plan==='anual' ? 'checked' : ''}`}>
               <input type="radio" name="plan" checked={plan==='anual'} onChange={() => setPlan('anual')} />
-              <span>Plan básico anual</span>
+              <span>{planInfo.nombre} anual - {planInfo.precioAnual}</span>
             </label>
           </div>
 

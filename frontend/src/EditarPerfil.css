@@ -15,7 +15,7 @@
   padding: 26px 22px 28px 22px;
   position: relative;
   border: 1px solid #cfe6fa;
-  max-height: 90vh;
+  max-height: 100vh;
   overflow: auto;
 }
 
@@ -36,7 +36,10 @@
   font-size: 42px;
   margin: 6px 0 8px 0;
 }
-.lapiz { font-size: 0.8em; }
+.lapiz { 
+  font-size: 0.8em; 
+  color: #000000 !important;
+}
 
 .editar-subtitle {
   color: #000000;

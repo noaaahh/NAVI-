@@ -1,27 +1,37 @@
 .registro {
   width: 100%;
   min-height: 100vh;
-  background: #f4f4f4;
+  background: #e6f3ff;
   color: #111;
   display: flex;
   flex-direction: column;
 }
 
 .registro__nav {
-  position: absolute;
+  position: fixed;
   top: 16px;
   left: 16px;
   display: flex;
   gap: 10px;
-  z-index: 2;
+  z-index: 1000;
+  background: rgba(173, 216, 230, 0.95) !important;
+  background-color: rgba(173, 216, 230, 0.95) !important;
+  padding: 10px 15px;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
 }
 
 .registro__btn {
-  background: #f0f0f0;
+  background: #ffffff;
   color: #000000;
   border: none;
   padding: 10px 16px;
-  border-radius: 10px;
+  border-radius: 12px;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
 
 .registro__btn--primary {
@@ -53,7 +63,7 @@
   color: #fff;
   font-size: 56px;
   font-weight: 800;
-  text-shadow: 0 4px 24px rgba(0,0,0,0.45);
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.45);
 }
 
 .registro__cards {
@@ -79,7 +89,7 @@
   padding: 22px;
   max-width: 340px;
   margin: 40px 0 10px 40px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
 }
 
 .registro__card h3 {
@@ -103,7 +113,7 @@
   justify-content: center;
   min-height: 500px;
   max-width: 400px;
-  box-shadow: 0 18px 50px rgba(0,0,0,0.20);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.20);
   text-align: center;
   align-items: center;
   position: relative;
@@ -118,7 +128,7 @@
   font-size: xx-large;
 }
 
-.registro__hand { 
+.registro__hand {
   position: absolute;
   bottom: 20px;
   right: 20px;
@@ -146,16 +156,30 @@
   border: none;
   border-radius: 16px;
   padding: 18px 20px;
-  box-shadow: 0 18px 50px rgba(0,0,0,0.20);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.20);
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-size: 20px;
 }
 
-.registro__option-label { display: flex; flex-direction: column; align-items: flex-start; }
-.registro__option-title { font-weight: 600; font-size: 28px; line-height: 1.1; }
-.registro__option-subtitle { margin-top: 4px; font-size: 17px; color: #1a1a1a; }
+.registro__option-label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.registro__option-title {
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 1.1;
+}
+
+.registro__option-subtitle {
+  margin-top: 4px;
+  font-size: 17px;
+  color: #1a1a1a;
+}
 
 .registro__option-right {
   display: inline-flex;
@@ -163,7 +187,6 @@
   gap: 14px;
 }
 
-/* Engrosar flechas de los botones */
 .registro__option-right svg {
   stroke-width: 3.5;
 }
@@ -193,18 +216,23 @@
 
 .registro__footer-left a {
   color: inherit;
+  font-size: 22px;
+}
+
+.registro__footer-left a:hover {
+  color: #0a66ff;
 }
 
 @media (max-width: 900px) {
   .registro__cards {
     grid-template-columns: 1fr;
   }
+
   .registro__selector {
     grid-template-columns: 1fr;
   }
+
   .registro__card {
     margin-left: 0;
   }
 }
-
-

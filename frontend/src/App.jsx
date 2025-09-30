@@ -21,7 +21,7 @@ export default function App() {
   }, []);
 
   // Hash-based routing for all components
-  if (hash === '#inicio') return <Inicio onGoRegistro={() => (window.location.hash = '#registro')} />;
+  if (hash === '#inicio') return <Inicio onGoRegistro={() => (window.location.hash = '#registro')} onGoInicioUsuario={() => (window.location.hash = '#inicio-usuario')} />;
   if (hash === '#registro') return <Registro onBack={() => (window.location.hash = '#inicio')} onGoRegistroPersonal={() => (window.location.hash = '#registro-personal')} onGoRegistroEmpresa={() => (window.location.hash = '#registroempresa')} />;
   if (hash === '#registro-personal') return <RegistroPersonal onBack={() => (window.location.hash = '#registro')} onGoInicio={() => (window.location.hash = '#inicio')} onGoInicioUsuario={() => (window.location.hash = '#inicio-usuario')} />;
   if (hash === '#inicio-usuario') return <InicioUsuario onBack={() => (window.location.hash = '#registro-personal')} onGoInicio={() => (window.location.hash = '#inicio')} />;
@@ -32,5 +32,5 @@ export default function App() {
   if (hash === '#registroempresa') return <RegistroEmpresa />;
   
   // Default fallback
-  return <Inicio onGoRegistro={() => (window.location.hash = '#registro')} />;
+  return <Inicio onGoRegistro={() => (window.location.hash = '#registro')} onGoInicioUsuario={() => (window.location.hash = '#inicio-usuario')} />;
 }

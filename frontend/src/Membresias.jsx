@@ -5,8 +5,9 @@ import "./Membresias.css";
 
 export default function Membresias() {
   const seleccionar = (plan) => {
-    // Guarda el plan elegido (opcional) y navega al pago
-    try { localStorage.setItem("planSeleccionado", plan); } catch {}
+    try { 
+      localStorage.setItem("planSeleccionado", plan); 
+    } catch {}
     window.location.hash = '#formapago';
   };
 
@@ -14,7 +15,7 @@ export default function Membresias() {
     <div className="membresias-page">
       <section className="membresias-hero">
         <div className="nav-links">
-          <button onClick={() => (window.location.hash = '#inicio')}>Inicio</button>
+          <button onClick={() => (window.location.hash = '#inicio')}>Ayuda</button>
           <button className="btn-secondary" onClick={() => (window.location.hash = '#registroempresa')}>Volver atrás</button>
         </div>
         <h1 className="membresias-title">Opciones de membresía:</h1>
@@ -22,28 +23,63 @@ export default function Membresias() {
 
       <main className="membresias-main">
         <div className="cards-grid">
-          <div className="card">
-            <div className="precio">35 USD mensual / 250 USD anual.</div>
-            <h3>Plan básico</h3>
-            <p className="resumen">Empresa Inclusiva Inicial:</p>
-            <p className="detalle">Incluye exposición en redes sociales oficiales de S.A.V.I y aparecer destacados en el buscador de la aplicación.</p>
-            <button className="seleccionar" onClick={() => seleccionar('basico')}>Seleccionar</button>
+          {/* Plan Básico */}
+          <div className="plan-card basico">
+            <div className="plan-icon">
+              <div className="icon-circle">
+                <span className="icon-minus">−</span>
+              </div>
+            </div>
+            <h3 className="plan-title">Plan básico</h3>
+            <p className="plan-subtitle">Empresa inclusiva</p>
+            <div className="plan-price">
+              <span className="price-main">35 USD</span>
+              <span className="price-period">/mensual</span>
+            </div>
+            <p className="plan-description">
+              Incluye exposición en redes sociales oficiales de S.A.V.I y aparecer destacados en el buscador de la aplicación.
+            </p>
+            <div className="plan-price-annual">250 USD anual</div>
+            <button className="plan-button basico-btn" onClick={() => seleccionar('basico')}>Seleccionar</button>
           </div>
 
-          <div className="card central">
-            <div className="precio">65 USD mensual / 780 USD anual.</div>
-            <h3>Plan premium</h3>
-            <p className="resumen">Visibilidad y Formación:</p>
-            <p className="detalle">Incluye plan básico + estadísticas, interacción, talleres internos de accesibilidad y material listo para usar.</p>
-            <button className="seleccionar" onClick={() => seleccionar('premium')}>Seleccionar</button>
+          {/* Plan Premium - Más popular */}
+          <div className="plan-card premium">
+            <div className="popular-badge">Más popular</div>
+            <div className="plan-icon">
+              <div className="icon-star">★</div>
+            </div>
+            <h3 className="plan-title">Plan premium</h3>
+            <p className="plan-subtitle">Visibilidad y Formación</p>
+            <div className="plan-price">
+              <span className="price-main">65 USD</span>
+              <span className="price-period">/mensual</span>
+            </div>
+            <p className="plan-description">
+              Incluye beneficios del plan básico, acceso a estadísticas e interacción de usuarios, talleres y capacitaciones internas para el personal en accesibilidad e inclusión y material de comunicación listo para usar.
+            </p>
+            <div className="plan-price-annual">780 USD anual</div>
+            <button className="plan-button premium-btn" onClick={() => seleccionar('premium')}>Seleccionar</button>
           </div>
 
-          <div className="card">
-            <div className="precio">90 USD mensual / 1.080 USD anual.</div>
-            <h3>Plan plus</h3>
-            <p className="resumen">Empresa Líder en Inclusión:</p>
-            <p className="detalle">Incluye plan premium + consultoría, campañas, eventos S.A.V.I y distinción en la app.</p>
-            <button className="seleccionar" onClick={() => seleccionar('plus')}>Seleccionar</button>
+          {/* Plan Plus */}
+          <div className="plan-card plus">
+            <div className="plan-icon">
+              <div className="icon-circle">
+                <span className="icon-minus">−</span>
+              </div>
+            </div>
+            <h3 className="plan-title">Plan plus</h3>
+            <p className="plan-subtitle">Empresa líder en inclusión</p>
+            <div className="plan-price">
+              <span className="price-main">90 USD</span>
+              <span className="price-period">/mensual</span>
+            </div>
+            <p className="plan-description">
+              Incluye beneficios del plan premium, consultoría personalizada, participación en campañas y eventos anuales organizados por S.A.V.I y distinción especial dentro de la app.
+            </p>
+            <div className="plan-price-annual">1080 USD anual</div>
+            <button className="plan-button plus-btn" onClick={() => seleccionar('plus')}>Seleccionar</button>
           </div>
         </div>
       </main>

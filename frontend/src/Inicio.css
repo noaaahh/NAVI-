@@ -17,35 +17,43 @@
 }
 
 
-.nav-links button {
-  margin-left: 10px;
-  padding: 8px 12px;
-  border: none;
-  background: #ffffff;
-  color: #000000;
+.inicio .nav-links button {
+  margin-left: 0;
+  padding: 10px 16px;
+  border: none !important;
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  color: #000000 !important;
   cursor: pointer;
-  border-radius: 10px;
-  transition: background 0.2s, color 0.2s;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 101;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.nav-links button:hover {
-  background: #cecece;
-  color: #000000;
+.inicio .nav-links button:hover {
+  background: #f0f0f0 !important;
+  background-color: #f0f0f0 !important;
+  color: #000000 !important;
   transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-.nav-links button.btn-destacado {
+.inicio .nav-links button.btn-destacado {
   background: #0077b6 !important;
   color: #fff !important;
   font-weight: bold;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
-.nav-links button.btn-destacado:hover {
+.inicio .nav-links button.btn-destacado:hover {
   background: #023e8a !important;
 }
 
 .hero {
-  background: url("https://i.imgur.com/NRZSuz3.jpeg") center/cover no-repeat;
+  background: url("https://i.imgur.com/woVnDqH.png") center/cover no-repeat;
+  background-attachment: fixed;
   text-align: center;
   color: white;
   padding: 100px 20px;
@@ -53,13 +61,20 @@
   position: relative;
 }
 
-.nav-links {
-  position: absolute;
+.inicio .nav-links {
+  position: fixed;
   top: 25px;
   left: 30px;
   display: flex;
   gap: 10px;
-  z-index: 10;
+  z-index: 1000;
+  background: rgba(173, 216, 230, 0.95) !important;
+  background-color: rgba(173, 216, 230, 0.95) !important;
+  padding: 10px 15px;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
 }
 
 .logo-title {
@@ -116,19 +131,23 @@
   margin-top: 20px;
 }
 
-.card {
+.opcion-card {
   position: relative;
   border-radius: 15px;
   overflow: hidden;
   width: 200px;
-  height: 150px;
+  height: 200px;
   display: flex;
-  align-items: flex-end;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  align-items: flex-start;
+  justify-content: flex-start;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  border: none;
+  background: none;
+  padding: 0;
 }
 
 
-.card img {
+.opcion-card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -138,7 +157,7 @@
   z-index: 1;
 }
 
-.card-overlay {
+.opcion-card-overlay {
   position: absolute;
   left: 0;
   top: 0;
@@ -146,23 +165,52 @@
   height: 100%;
   background: rgba(0, 0, 0, 0.425);
   color: #fff;
-  padding: 25px 5px 15px 5px;
-  text-align: center;
+  padding: 15px;
+  text-align: left;
   border-radius: 15px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
   opacity: 1;
   visibility: visible;
   transition: none;
   z-index: 2;
 }
 
-.card-overlay p {
-  margin: 6px 0;
-  font-size: 18px;
+.opcion-card-overlay p {
+  margin: 4px 0;
+  font-size: 16px;
   font-weight: 500;
+  text-align: left;
+}
+
+.ver-todos-link {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.link-button {
+  background: none !important;
+  border: none !important;
+  color: #0077b6 !important;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 10px 20px;
+  transition: color 0.2s;
+}
+
+.ver-todos-link button:hover {
+  color: #023e8a !important;
+  text-decoration: none;
+  border: none !important;
+}
+
+.link-button:hover {
+  color: #023e8a !important;
+  text-decoration: none;
 }
 
 .quienes-somos {

@@ -34,32 +34,37 @@ const Inicio = ({ onGoRegistro, onGoInicioUsuario }) => {
       </section>
 
       <section className="opciones">
-        <h2>Algunas de nuestras opciones:</h2>
+        <h2>Locales destacados:</h2>
         <div className="cards">
-          <div className="card">
+          <div className="opcion-card">
             <img src="https://i.imgur.com/ZifMmLa.jpeg" alt="Opción 1" />
-            <div className="card-overlay">
+            <div className="opcion-card-overlay">
               <p>Domino´s pizza</p>
               <p>Poctitos</p>
               <p>Rampa</p>
             </div>
           </div>
-          <div className="card">
+          <div className="opcion-card">
             <img src="https://i.imgur.com/ZifMmLa.jpeg" alt="Opción 2" />
-            <div className="card-overlay">
+            <div className="opcion-card-overlay">
               <p>Domino´s pizza</p>
               <p>Poctitos</p>
               <p>Rampa</p>
             </div>
           </div>
-          <div className="card">
+          <div className="opcion-card">
             <img src="https://i.imgur.com/ZifMmLa.jpeg" alt="Opción 3" />
-            <div className="card-overlay">
+            <div className="opcion-card-overlay">
               <p>Domino´s pizza</p>
               <p>Poctitos</p>
               <p>Rampa</p>
             </div>
           </div>
+        </div>
+        <div className="ver-todos-link">
+          <button onClick={onGoInicioUsuario} className="link-button">
+            ver todos los comercios
+          </button>
         </div>
       </section>
 
@@ -93,13 +98,13 @@ const Inicio = ({ onGoRegistro, onGoInicioUsuario }) => {
       </section>
 
       <footer className="footer">
-        <div className="footer-text">Contacto: 091 222 333 — savi@gmail.com.uy</div>
         <div className="footer-socials">
           <span><FaInstagram /></span>
           <span><FaLinkedin /></span>
           <span><FaWhatsapp /></span>
           <span><MdMailOutline /></span>
         </div>
+        <div className="footer-text">Contacto: 091 222 333 — savi@gmail.com.uy</div>
       </footer>
       <ModalLogin isOpen={showLogin} onClose={() => setShowLogin(false)} onLoginSuccess={onGoInicioUsuario} />
     </div>

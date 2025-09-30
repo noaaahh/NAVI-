@@ -1,5 +1,6 @@
 .perfil-hero {
   background: url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1964&auto=format&fit=crop") center/cover no-repeat;
+  background-attachment: fixed;
   min-height: 280px;
   position: relative;
   display: flex;
@@ -28,23 +29,40 @@
   font-size: 44px;
   font-weight: 800;
 }
-.card-edit { font-size: 0.8em; }
+
+.perfil-title .lapiz {
+  color: #ffffff !important;
+}
+.card-edit { 
+  font-size: 0.8em; 
+  color: #000000 !important;
+}
 .nav-links {
-  position: absolute;
-  background-color: #000000;
+  position: fixed;
+  background: rgba(173, 216, 230, 0.95) !important;
+  background-color: rgba(173, 216, 230, 0.95) !important;
   color: #ffffff;
   top: 18px;
   left: 24px;
   display: flex;
   gap: 10px;
+  z-index: 1000;
+  padding: 10px 15px;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
 }
 .nav-links button {
-  padding: 8px 12px;
+  padding: 10px 16px;
   border: none;
   background: #ffffff;
   color: #000000;
   cursor: pointer;
-  border-radius: 10px;
+  border-radius: 12px;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
 .btn-secondary { background: #e9eef6; }
 
@@ -53,7 +71,7 @@
 .perfil-page {
   min-height: 100vh;
   width: 100%;
-  background: #f5f7fb;
+  background: #e6f3ff;
   display: flex;
   flex-direction: column;
 }
