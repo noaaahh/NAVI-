@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useAuth } from "./hooks/useAuth";
+import { API_CONFIG, buildApiUrl } from "./config/api";
 import { FaInstagram, FaLinkedin, FaWhatsapp } from "react-icons/fa";
 import { MdMailOutline } from "react-icons/md";
 import { FaRegEdit } from "react-icons/fa";
@@ -6,16 +8,46 @@ import { FaRegEdit } from "react-icons/fa";
 import "./EditarPerfil.css";
 
 export default function EditarPerfil() {
-  const [description, setDescription] = useState("Somos un restaurante de pizzas");
-  const [address, setAddress] = useState("Pocitos y...");
-  const [contact, setContact] = useState("123456789");
+  const { user } = useAuth();
+  const [nombre, setNombre] = useState("");
+  const [email, setEmail] = useState("");
+  const [description, setDescription] = useState("");
+  const [address, setAddress] = useState("");
+  const [contact, setContact] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false);
 
   const [accessibility, setAccessibility] = useState({
-    pasillos90_1: { pasillos: false, ramp: false, elevator: true },
-    pasillos90_2: { pasillos: false, ramp: false, elevator: false },
-    pasillos90_3: { pasillos: false, ramp: false, elevator: false },
-    pasillos90_4: { pasillos: false, ramp: false, elevator: false }
+    a: { pasillos: false, ramp: false, elevator: false },
+    b: { pasillos: false, ramp: false, elevator: false },
+    c: { pasillos: false, ramp: false, elevator: false },
+    d: { pasillos: false, ramp: false, elevator: false }
   });
+
+  // Cargar datos de la empresa al montar el componente
+  useEffect(() => {
+    if (user && user.id && user.tipo === 'empresa') {
+      cargarDatosEmpresa();
+    }
+  }, [user]);
+
+  const cargarDatosEmpresa = async () => {
+    try {
+      const response = await fetch(buildApiUrl(`empresa/${user.id}`));
+      const data = await response.json();
+      
+      if (data.success) {
+        setNombre(data.empresa.nombre || "");
+        setEmail(data.empresa.email || "");
+        if (data.empresa.accesibilidad) {
+          setAccessibility(data.empresa.accesibilidad);
+        }
+      }
+    } catch (error) {
+      console.error("Error al cargar datos:", error);
+    }
+  };
 
   const toggleAcc = (key, field) => {
     setAccessibility(prev => ({
@@ -24,9 +56,50 @@ export default function EditarPerfil() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert("Cambios guardados (demo)");
+    setError("");
+    setSuccess(false);
+    setLoading(true);
+
+    if (!user || !user.id) {
+      setError("No hay usuario autenticado");
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const response = await fetch(buildApiUrl(`empresa/${user.id}`), {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          nombre: nombre,
+          email: email,
+          descripcion: description,
+          direccion: address,
+          contacto: contact,
+          accesibilidad: accessibility
+        })
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setSuccess(true);
+        setTimeout(() => {
+          window.history.back();
+        }, 1500);
+      } else {
+        setError(data.error || "Error al guardar cambios");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      setError("Error de conexión. Intenta nuevamente.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -36,7 +109,40 @@ export default function EditarPerfil() {
         <h1 className="editar-title">Edita tu perfil <span className="lapiz" aria-hidden="true"><FaRegEdit /></span></h1>
         <div className="editar-subtitle">Elige la información sobre tu local</div>
 
+        {error && (
+          <div style={{ color: 'red', marginBottom: '15px', textAlign: 'center', padding: '10px', backgroundColor: '#ffebee', borderRadius: '5px' }}>
+            {error}
+          </div>
+        )}
+
+        {success && (
+          <div style={{ color: 'green', marginBottom: '15px', textAlign: 'center', padding: '10px', backgroundColor: '#e8f5e9', borderRadius: '5px' }}>
+            Cambios guardados con éxito
+          </div>
+        )}
+
         <form onSubmit={handleSubmit} className="editar-form">
+            <label className="sr-only" htmlFor="nombre">Nombre de la empresa</label>
+            <input
+              id="nombre"
+              className="input"
+              value={nombre}
+              onChange={(e) => setNombre(e.target.value)}
+              placeholder="Nombre de la empresa"
+              required
+            />
+
+            <label className="sr-only" htmlFor="email">Email</label>
+            <input
+              id="email"
+              className="input"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email"
+              required
+            />
+
             <label className="sr-only" htmlFor="descripcion">Descripción</label>
             <input
               id="descripcion"
@@ -98,7 +204,13 @@ export default function EditarPerfil() {
             </div>
 
             <div className="acciones">
-              <button type="submit" className="guardar">Guardar cambios</button>
+              <button 
+                type="submit" 
+                className="guardar"
+                disabled={loading}
+              >
+                {loading ? "Guardando..." : "Guardar cambios"}
+              </button>
             </div>
         </form>
       </div>

@@ -1,133 +1,346 @@
-# 🔗 Integración Frontend (React) + Backend (PHP)
+# Integración Frontend (React) + Backend (Node.js)
 
 ## 📋 Resumen de la Integración
 
 Tu aplicación ahora está completamente integrada con:
 - **Frontend**: React con Vite
-- **Backend**: PHP con MySQL
+- **Backend**: Node.js + Express + Prisma ORM
+- **Base de Datos**: MySQL
 - **Comunicación**: API REST con JSON
+- **ORM**: Prisma para gestión de base de datos
+- **Visualizador**: Prisma Studio
 
-## 🚀 Cómo Ejecutar la Aplicación
+---
 
-### 1. **Backend (PHP)**
+## Cómo Ejecutar la Aplicación
+
+### **Opción 1: Usar el script de inicio automático (Recomendado)**
+
+#### Windows:
 ```bash
-# Asegúrate de que XAMPP esté ejecutándose
-# El backend debe estar en: http://localhost/NAVI--main/backend/
+# Asegúrate de que MySQL esté corriendo en XAMPP
+start-app.bat
 ```
 
-### 2. **Frontend (React)**
+#### Linux/Mac:
+```bash
+# Asegúrate de que MySQL esté corriendo
+chmod +x start-app.sh
+./start-app.sh
+```
+
+### **Opción 2: Iniciar manualmente**
+
+#### 1. **Iniciar MySQL**
+- Abre XAMPP y presiona "Start" en MySQL
+
+#### 2. **Backend (Node.js)**
+```bash
+cd backendd
+npm install          # Solo la primera vez
+node server.js       # Inicia el servidor backend
+```
+
+#### 3. **Frontend (React)**
 ```bash
 cd frontend
-npm install
-npm run dev
-# La aplicación se ejecutará en: http://localhost:5173
+npm install          # Solo la primera vez
+npm run dev          # Inicia el servidor frontend
 ```
 
-## 📁 Estructura de Archivos Creados
-
-### **Backend**
-```
-backend/
-├── cors.php                    # Configuración CORS
-└── api/
-    ├── registro.php            # Endpoint de registro
-    └── login.php              # Endpoint de login
+#### 4. **Prisma Studio (Opcional)**
+```bash
+cd backendd
+npx prisma studio    # Abre el visualizador de base de datos
 ```
 
-### **Frontend**
+---
+
+## 📁 Estructura del Proyecto
+
 ```
-frontend/src/
-├── services/
-│   └── api.js                 # Servicio de API
-├── hooks/
-│   └── useAuth.js             # Hook de autenticación
-├── config/
-│   └── api.js                 # Configuración de API
-└── components/
-    ├── ModalLogin.jsx         # Modal de login (actualizado)
-    └── RegistroPersonal.jsx   # Formulario de registro (actualizado)
+NAVI--main/
+├── backendd/
+│   ├── prisma/
+│   │   └── schema.prisma          # Schema de Prisma
+│   ├── generated/
+│   │   └── prisma/                # Cliente de Prisma generado
+│   ├── server.js                  # Servidor principal Node.js
+│   ├── guardaEmpresa.js          # (Legacy - integrado en server.js)
+│   ├── guardaUsuario.js          # (Legacy - integrado en server.js)
+│   ├── package.json              # Dependencias del backend
+│   └── .env                      # Variables de entorno
+│
+├── frontend/
+│   ├── src/
+│   │   ├── services/
+│   │   │   └── api.js            # Servicio de API
+│   │   ├── hooks/
+│   │   │   └── useAuth.js        # Hook de autenticación
+│   │   ├── config/
+│   │   │   └── api.js            # Configuración de API (URLs)
+│   │   ├── ModalLogin.jsx        # Modal de login
+│   │   ├── Registro*.jsx         # Formularios de registro
+│   │   └── ...                   # Otros componentes
+│   └── package.json
+│
+├── start-app.bat                 # Script de inicio Windows
+├── start-app.sh                  # Script de inicio Linux/Mac
+└── INTEGRACION_FRONTEND_BACKEND.md
 ```
 
-## 🔧 Funcionalidades Implementadas
+---
 
-### ✅ **Autenticación**
-- **Login**: Usuarios y empresas pueden iniciar sesión
-- **Registro**: Formulario de registro personal
-- **Sesión persistente**: Los usuarios permanecen logueados
-- **Logout**: Cerrar sesión y limpiar datos
+## 🔌 API Endpoints Disponibles
 
-### ✅ **API Endpoints**
-- `POST /api/registro.php` - Registro de usuarios/empresas
-- `POST /api/login.php` - Inicio de sesión
+### **Autenticación**
 
-### ✅ **Validaciones**
-- Validación de email
-- Validación de contraseñas (mínimo 6 caracteres)
-- Verificación de contraseñas coincidentes
-- Manejo de errores del servidor
+#### `POST /api/login`
+Iniciar sesión de usuario o empresa
+```json
+// Request
+{
+  "email": "usuario@example.com",
+  "password": "contraseña123"
+}
 
-## 🛠️ Configuración de la Base de Datos
+// Response (éxito)
+{
+  "success": true,
+  "id": 1,
+  "nombre": "Juan Pérez",
+  "tipo": "usuario",  // o "empresa"
+  "email": "usuario@example.com"
+}
+```
 
-Asegúrate de que tu base de datos `savi` tenga las tablas:
+#### `POST /api/registro`
+Registrar nuevo usuario o empresa
+```json
+// Request
+{
+  "tipo": "usuario",  // o "empresa"
+  "nombre": "Juan Pérez",
+  "email": "usuario@example.com",
+  "password": "contraseña123"
+}
 
+// Response (éxito)
+{
+  "success": true,
+  "id": 1,
+  "nombre": "Juan Pérez",
+  "tipo": "usuario"
+}
+```
+
+### **Gestión de Datos**
+
+#### `POST /api/empresa`
+Guardar o actualizar empresa
+```json
+{
+  "guarda": 1,
+  "empresa_id": 1,
+  "nombre": "Mi Empresa",
+  "email": "empresa@example.com",
+  "contraseña": "pass123"
+}
+```
+
+#### `POST /api/usuario`
+Guardar o actualizar usuario
+```json
+{
+  "guarda": 1,
+  "usuario_id": 1,
+  "nombre": "Juan",
+  "email": "juan@example.com",
+  "contraseña": "pass123"
+}
+```
+
+#### `GET /api/locales`
+Obtener todos los locales
+```json
+// Response
+{
+  "success": true,
+  "locales": [...]
+}
+```
+
+#### `GET /api/locales/:id`
+Obtener un local específico
+```json
+// Response
+{
+  "success": true,
+  "local": {...}
+}
+```
+
+---
+
+## 🗄️ Base de Datos
+
+### **Tablas en MySQL (Base de datos: `savi`)**
+
+#### `usuario`
 ```sql
--- Tabla de usuarios
 CREATE TABLE usuario (
     usuario_id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(255) NOT NULL,
-    email VARCHAR(255) UNIQUE NOT NULL,
-    contraseña VARCHAR(255) NOT NULL
-);
-
--- Tabla de empresas
-CREATE TABLE empresa (
-    empresa_id INT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(255) NOT NULL,
-    email VARCHAR(255) UNIQUE NOT NULL,
-    contraseña VARCHAR(255) NOT NULL
+    email VARCHAR(255) NOT NULL,
+    contraseña VARCHAR(255) NOT NULL,
+    publicado TINYINT DEFAULT 1
 );
 ```
 
-## 🔄 Flujo de la Aplicación
+#### `empresa`
+```sql
+CREATE TABLE empresa (
+    empresa_id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    contraseña VARCHAR(255) NOT NULL,
+    publicado TINYINT DEFAULT 1
+);
+```
 
-1. **Usuario visita la app** → Ve la página de inicio
-2. **Clic en "Registrarse"** → Va al selector de registro
-3. **Selecciona "Registro personal"** → Formulario de registro
-4. **Completa el formulario** → Se envía al backend PHP
-5. **Registro exitoso** → Redirige al usuario logueado
-6. **Login** → Modal de login conectado al backend
+#### `locales`
+```sql
+CREATE TABLE locales (
+    local_id INT AUTO_INCREMENT PRIMARY KEY,
+    empresa_id INT NOT NULL,
+    nombre VARCHAR(255) NOT NULL,
+    direccion VARCHAR(255) NOT NULL,
+    descripcion VARCHAR(255),
+    contacto TINYINT,
+    accesibilidad VARCHAR(255)
+);
+```
+
+### **Prisma Studio**
+Para visualizar y editar datos en la base de datos:
+```bash
+cd backendd
+npx prisma studio
+```
+Abre en: **http://localhost:5555**
+
+---
+
+## 🔧 Configuración
+
+### **Variables de Entorno (backendd/.env)**
+```env
+DATABASE_URL="mysql://root:@localhost:3306/savi"
+```
+
+### **Configuración del Frontend (frontend/src/config/api.js)**
+```javascript
+export const API_CONFIG = {
+  BASE_URL: 'http://localhost:3000/api',
+  ENDPOINTS: {
+    REGISTER: 'registro',
+    LOGIN: 'login',
+    EMPRESA: 'empresa',
+    USUARIO: 'usuario',
+    LOCALES: 'locales',
+  }
+};
+```
+
+---
+
+## 🔄 Flujo de Autenticación
+
+1. **Usuario abre la aplicación**
+2. **Clic en "Iniciar Sesión"** → Abre modal de login
+3. **Ingresa credenciales** → Se envía POST a `/api/login`
+4. **Backend verifica** en tablas `usuario` y `empresa`
+5. **Si es válido** → Devuelve datos del usuario
+6. **Frontend guarda** en localStorage
+7. **Usuario autenticado** → Redirige según tipo (usuario/empresa)
+
+---
+
+## 🛠️ Comandos Útiles de Prisma
+
+```bash
+# Ver la base de datos en el navegador
+npx prisma studio
+
+# Sincronizar schema con la base de datos existente
+npx prisma db pull
+
+# Generar el cliente de Prisma
+npx prisma generate
+
+# Aplicar cambios del schema a la base de datos
+npx prisma db push
+
+# Crear una migración
+npx prisma migrate dev --name nombre_migracion
+```
+
+---
 
 ## 🐛 Solución de Problemas
 
-### **Error de CORS**
-Si ves errores de CORS, verifica que:
-- El archivo `cors.php` esté incluido en tus endpoints
-- La URL del backend sea correcta en `frontend/src/config/api.js`
+### **Error: Can't reach database server**
+- ✅ Asegúrate de que MySQL esté corriendo en XAMPP
+- ✅ Verifica que la base de datos `savi` exista
+- ✅ Confirma que las credenciales en `.env` sean correctas
 
-### **Error de Conexión**
-Si no se conecta al backend:
-- Verifica que XAMPP esté ejecutándose
-- Confirma que la URL en `API_CONFIG.BASE_URL` sea correcta
-- Revisa la consola del navegador para errores
+### **Error: fetch failed / Connection refused**
+- ✅ Verifica que el backend esté corriendo en `http://localhost:3000`
+- ✅ Revisa la consola del backend para errores
+- ✅ Confirma que `frontend/src/config/api.js` tenga la URL correcta
 
-### **Error de Base de Datos**
-Si hay errores de BD:
-- Verifica que la base de datos `savi` exista
-- Confirma que las tablas `usuario` y `empresa` estén creadas
-- Revisa la configuración en `backend/conexion.php`
+### **Error: Module not found**
+- ✅ Ejecuta `npm install` en `backendd/` y `frontend/`
+- ✅ Ejecuta `npx prisma generate` en `backendd/`
 
-## 📝 Próximos Pasos
+### **El login no funciona**
+- ✅ Verifica que existan usuarios en la base de datos
+- ✅ Confirma que las contraseñas coincidan (sin encriptar por ahora)
+- ✅ Revisa la consola del navegador y del backend
 
-1. **Agregar más endpoints** (editar perfil, buscar locales, etc.)
-2. **Implementar registro de empresas**
-3. **Agregar validaciones del lado del servidor**
-4. **Implementar JWT para autenticación más segura**
-5. **Agregar manejo de archivos (imágenes de perfil)**
+---
 
 ## 🎯 URLs Importantes
 
-- **Frontend**: http://localhost:5173
-- **Backend API**: http://localhost/NAVI--main/backend/api/
-- **Base de datos**: localhost/phpmyadmin (usuario: root, sin contraseña)
+| Servicio | URL |
+|----------|-----|
+| **Frontend** | http://localhost:5173 |
+| **Backend API** | http://localhost:3000/api |
+| **Prisma Studio** | http://localhost:5555 |
 
-¡Tu aplicación ya está completamente integrada! 🎉
+---
+
+## 📝 Próximos Pasos Sugeridos
+
+1. ✅ **Encriptación de contraseñas** (bcrypt)
+2. ✅ **JWT para tokens de sesión**
+3. ✅ **Validación de datos con Zod**
+4. ✅ **Subida de imágenes**
+5. ✅ **Paginación de resultados**
+6. ✅ **Búsqueda y filtros**
+7. ✅ **Gestión de locales (CRUD completo)**
+8. ✅ **Sistema de membresías**
+
+---
+
+## 🎉 ¡Todo está integrado!
+
+- ✅ Backend Node.js corriendo
+- ✅ Frontend React conectado
+- ✅ Prisma ORM configurado
+- ✅ Base de datos MySQL lista
+- ✅ Login funcional
+- ✅ Registro funcional
+- ✅ Prisma Studio disponible
+
+**¡Tu aplicación NAVI está lista para usarse!** 🚀

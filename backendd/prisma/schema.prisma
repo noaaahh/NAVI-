@@ -1,0 +1,36 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model empresa {
+  empresa_id     Int     @id @default(autoincrement())
+  nombre         String  @db.VarChar(255)
+  email          String  @db.VarChar(255)
+  contrase_a     String  @map("contraseña") @db.VarChar(255)
+  publicado      Int     @db.TinyInt
+  accesibilidad  String? @db.Text  // Guardará JSON con los datos de accesibilidad
+}
+
+model locales {
+  local_id      Int    @id @default(autoincrement())
+  empresa_id    Int
+  nombre        String @db.VarChar(255)
+  direccion     String @db.VarChar(255)
+  descripcion   String @db.VarChar(255)
+  contacto      Int    @db.TinyInt
+  accesibilidad String @db.VarChar(255)
+}
+
+model usuario {
+  usuario_id Int    @id @default(autoincrement())
+  nombre     String @db.VarChar(255)
+  email      String @db.VarChar(255)
+  contrase_a String @map("contraseña") @db.VarChar(255)
+  publicado  Int    @db.TinyInt
+}

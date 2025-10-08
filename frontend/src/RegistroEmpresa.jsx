@@ -1,31 +1,76 @@
 import React, { useState } from "react";
+import { useAuth } from "./hooks/useAuth";
 import { FaInstagram, FaLinkedin, FaWhatsapp } from "react-icons/fa";
 import { MdMailOutline } from "react-icons/md";
 import "./RegistroEmpresa.css";
 
-export default function RegistroEmpresa() {
-  const [form, setForm] = useState({ name: "", email: "", pass: "", pass2: "" });
+export default function RegistroEmpresa({ onBack, onGoInicio }) {
+  const [form, setForm] = useState({ nombre: "", email: "", password: "", password2: "" });
   const [acc, setAcc] = useState({
     a: { pasillos: false, ramp: false, elevator: true },
     b: { pasillos: false, ramp: false, elevator: false },
     c: { pasillos: false, ramp: false, elevator: false },
     d: { pasillos: false, ramp: false, elevator: false }
   });
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const { register } = useAuth();
 
-  const handle = (k, v) => setForm(p => ({ ...p, [k]: v }));
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+  };
+
   const toggle = (k, f) => setAcc(p => ({ ...p, [k]: { ...p[k], [f]: !p[k][f] } }));
-  const submit = (e) => { 
-    e.preventDefault(); 
-    alert("Registro enviado (demo)"); 
-    window.location.hash = '#membresias';
+
+  const handleSubmit = async (e) => { 
+    e.preventDefault();
+    setError("");
+    setLoading(true);
+
+    // Validaciones
+    if (form.password !== form.password2) {
+      setError("Las contraseñas no coinciden");
+      setLoading(false);
+      return;
+    }
+
+    if (form.password.length < 6) {
+      setError("La contraseña debe tener al menos 6 caracteres");
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const empresaData = {
+        tipo: "empresa",
+        nombre: form.nombre,
+        email: form.email,
+        password: form.password,
+        accesibilidad: acc  // Enviar los datos de accesibilidad
+      };
+
+      const result = await register(empresaData);
+      
+      if (result.success) {
+        // Redirigir a membresías después del registro exitoso
+        window.location.hash = '#membresias';
+      } else {
+        setError(result.error || "Error al registrarse");
+      }
+    } catch (err) {
+      setError("Error de conexión. Intenta nuevamente.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div className="perfil-emp-page">
       <header className="pe-hero">
         <div className="nav-links">
-          <button onClick={() => (window.location.hash = '#inicio')}>Inicio</button>
-          <button className="btn-secondary" onClick={() => (window.location.hash = '#registro')}>Volver atrás</button>
+          <button onClick={onGoInicio || (() => window.location.hash = '#inicio')}>Inicio</button>
+          <button className="btn-secondary" onClick={onBack || (() => window.location.hash = '#registro')}>Volver atrás</button>
         </div>
         <img
           className="pe-hero-img"
@@ -38,20 +83,62 @@ export default function RegistroEmpresa() {
       <div className="pe-subtitle">Te pedimos que completes los siguientes campos para poder iniciarte en SAVI</div>
 
       <main className="pe-main">
-        <form className="pe-card form" onSubmit={submit}>
+        <form className="pe-card form" onSubmit={handleSubmit}>
+          {error && (
+            <div className="error-message" style={{ color: 'red', marginBottom: '20px', textAlign: 'center' }}>
+              {error}
+            </div>
+          )}
+
           <label>Nombre de la empresa</label>
-          <input className="pe-input" placeholder="" value={form.name} onChange={e=>handle('name', e.target.value)} />
+          <input 
+            className="pe-input" 
+            name="nombre"
+            placeholder="" 
+            value={form.nombre} 
+            onChange={handleChange}
+            required
+          />
 
           <label>Email</label>
-          <input className="pe-input" placeholder="ejemplo@gmail.com" value={form.email} onChange={e=>handle('email', e.target.value)} />
+          <input 
+            className="pe-input" 
+            name="email"
+            type="email"
+            placeholder="ejemplo@gmail.com" 
+            value={form.email} 
+            onChange={handleChange}
+            required
+          />
 
           <label>Contraseña</label>
-          <input className="pe-input" type="password" value={form.pass} onChange={e=>handle('pass', e.target.value)} />
+          <input 
+            className="pe-input" 
+            name="password"
+            type="password" 
+            value={form.password} 
+            onChange={handleChange}
+            minLength="6"
+            required
+          />
 
           <label>Confirmar contraseña</label>
-          <input className="pe-input" type="password" value={form.pass2} onChange={e=>handle('pass2', e.target.value)} />
+          <input 
+            className="pe-input" 
+            name="password2"
+            type="password" 
+            value={form.password2} 
+            onChange={handleChange}
+            required
+          />
 
-          <button className="pe-submit" type="submit">Ingresar</button>
+          <button 
+            className="pe-submit" 
+            type="submit"
+            disabled={loading}
+          >
+            {loading ? "Registrando..." : "Ingresar"}
+          </button>
         </form>
 
         <section className="pe-card acc">

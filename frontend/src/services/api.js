@@ -3,7 +3,7 @@ import { API_CONFIG, buildApiUrl } from '../config/api.js';
 // Función helper para hacer requests
 const apiRequest = async (endpoint, options = {}) => {
   const url = buildApiUrl(endpoint);
-  
+
   const defaultOptions = {
     headers: {
       'Content-Type': 'application/json',
@@ -24,6 +24,25 @@ const apiRequest = async (endpoint, options = {}) => {
   } catch (error) {
     console.error('Error en API request:', error);
     throw error;
+  }
+};
+export const API_CONFIG = {
+  // URL base del backend Node.js
+  BASE_URL: 'http://localhost:3001/api',
+
+  // Endpoints
+  ENDPOINTS: {
+    REGISTER: 'registro',
+    LOGIN: 'login',
+    EMPRESA: 'empresa',
+    USUARIO: 'usuario',
+    LOCALES: 'locales',
+    UPDATE_EMPRESA: (id) => `empresa/${id}`,
+    GET_EMPRESA: (id) => `empresa/${id}`,
+    // Nuevos endpoints para búsqueda y filtros
+    BUSCAR_EMPRESAS: 'empresas/buscar',
+    TODAS_EMPRESAS: 'empresas',
+    FILTROS_ACCESIBILIDAD: 'filtros/accesibilidad'
   }
 };
 

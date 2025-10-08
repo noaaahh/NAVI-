@@ -47,7 +47,7 @@ const Registro = ({ onBack, onGoRegistroPersonal, onGoInicioUsuario, onGoRegistr
           <button className="registro__option" onClick={onGoRegistroEmpresa}>
             <span className="registro__option-label">
               <span className="registro__option-title">Registro empresarial</span>
-              <span className="registro__option-subtitle">Registra tu empresa y sé parte de SAVI, Iniciondonos a construir accesibilidad para todos.</span>
+              <span className="registro__option-subtitle">Registra tu empresa y sé parte de SAVI, ayudandonos a construir accesibilidad para todos.</span>
             </span>
             <span className="registro__option-right">
               <span className="registro__dot" />
